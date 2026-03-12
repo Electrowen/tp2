@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Vente : produits</title>
-</head>
-<body>
-{# gestion des messages flash #}
-{% if app.session.flashBag.has('info') %}
+{% extends 'Layouts/layout_vente.html.twig' %}
+
+{% block title %}{{ parent() }} : produits{% endblock %}
+
+{% block titre_principal %}{{ parent() }} : détail du produit {{ produit.id }}{% endblock %}
+
+{% block vue %}
     <ul>
-        {% for msg in app.session.flashBag.get('info') %}
-            <li>{{ msg }}</li>
-        {% endfor %}
+        <li>id : {{ produit.id }}</li>
+        <li>dénomination : {{ produit.denomination }}</li>
+        <li>code barre : {{ produit.code }}</li>
+        <li>actif : {{ produit.actif ? 'vrai' : 'faux' }}</li>
     </ul>
-{% endif %}
 
-<h1>Site de vente : détail du produit {{ produit.id }}</h1>
-
-<ul>
-    <li>id : {{ produit.id }}</li>
-    <li>dénomination : {{ produit.denomination }}</li>
-    <li>code barre : {{ produit.code }}</li>
-    <li>actif : {{ produit.actif ? 'vrai' : 'faux' }}</li>
-</ul>
-
-{{ dump(produit) }}
-</body>
-</html>
+    {{ dump(produit) }}
+{% endblock %}
